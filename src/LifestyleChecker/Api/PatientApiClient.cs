@@ -47,7 +47,7 @@ public class PatientApiClient(HttpClient httpClient) : IPatientApiClient
     /// <exception cref="OperationCanceledException">The request was canceled using <paramref name="cancellationToken"/>.</exception>
     public async Task<PatientLookupResult> GetPatientAsync(string nhsNumber, CancellationToken cancellationToken = default)
     {
-        if(string.IsNullOrWhiteSpace(nhsNumber))
+        if(string.IsNullOrWhiteSpace(nhsNumber) || nhsNumber.Length > 10)
         {
             return new PatientLookupResult(PatientLookupStatus.Unavailable);
         }

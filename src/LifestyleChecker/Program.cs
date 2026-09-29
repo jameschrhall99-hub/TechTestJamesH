@@ -21,7 +21,7 @@ builder.Services.AddHttpClient<IPatientApiClient, PatientApiClient>(client =>
 
     client.DefaultRequestHeaders.Add(
         "Ocp-Apim-Subscription-Key", key);
-});
+}).RemoveAllLoggers();
 
 var app = builder.Build();
 

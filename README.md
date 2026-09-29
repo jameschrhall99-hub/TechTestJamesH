@@ -52,3 +52,10 @@ The automated tests use fake API responses and a dummy subscription key. They do
 - The confirmed scoring age bands are 16–21, 22–40, 41–65, and 66+. Someone aged 65 is in the 41–65 band.
 - A 29 February birthday is treated as occurring on 1 March in non-leap years so no one under the age of 16 can use the service.
 - "High" message changed from "improve you quality of life" to "improve your quality of life"
+
+
+## Extras
+- Given the time, I would add DTOs and validation for form/user inputs
+- Move the patient API URL and timeout into configuration, and validate the settings at startup
+- Use an injectable clock so age and birthday boundary cases can be tested deterministically
+- Add browser-side validation and accessibility checks for the questionnaire

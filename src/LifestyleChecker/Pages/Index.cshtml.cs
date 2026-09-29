@@ -16,6 +16,8 @@ public class IndexModel(IPatientApiClient patientApiClient) : PageModel
 
     [BindProperty]
     [Required(ErrorMessage = "Enter your NHS number.")]
+    //no "exactly 10 digits" check, as example and tests use 123456789 - 9 digits
+    [StringLength(10, ErrorMessage = "Enter an NHS number with no more than 10 digits.")]
     [RegularExpression("^[0-9]+$", ErrorMessage = "Enter an NHS number using digits only.")]
     public string NhsNumber { get; set; } = string.Empty;
 
