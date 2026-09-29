@@ -59,3 +59,17 @@ The automated tests use fake API responses and a dummy subscription key. They do
 - Move the patient API URL and timeout into configuration, and validate the settings at startup
 - Use an injectable clock so age and birthday boundary cases can be tested deterministically
 - Add browser-side validation and accessibility checks for the questionnaire
+
+## Part 3
+I would achieve the optional addition by moving the values such as the age group boundaries or points per answer from code to a csv file that the applciation could read. 
+
+eg
+MinAge,MaxAge,Q1YesPoints,Q2YesPoints,Q3NoPoints,HighRiskMinScore
+16,21,1,2,1,4
+22,40,2,2,3,4
+41,65,3,2,2,4
+66,,3,3,1,4 //here blank upper limit means no upper limit
+
+A ScoringRuleSet would hold a list of RiskRule records and one high-result threshold. The existing RiskRule record could be reused or adapted for an open-ended final band. An IScoringRulesProvider would expose the current, validated rule-set snapshot. A CsvScoringRulesProvider could load it from the file, an IRiskScorer would take the patient's age and three answers, obtain one snapshot from the provider, find the matching band, add its points, and return both the score and low/high category. PartTwoModel would call this service instead of the current static RiskScorer and its own hard-coded 3/4 threshold.
+
+Option to "upgrade" to a database rather than csv later if code got more complicated / broarder scope.
