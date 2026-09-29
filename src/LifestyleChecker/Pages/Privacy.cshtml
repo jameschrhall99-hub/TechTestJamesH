@@ -1,0 +1,101 @@
+@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Privacy notice";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="alert alert-warning" role="status">
+    <strong>Draft notice:</strong>
+    </div>
+
+<h2>1. Who operates this service</h2>
+<p>
+    This service is operated by <strong>[name of the organisation]</strong>, at
+    <strong>[postal address]</strong>. We can be contacted at
+    <strong>[privacy contact email or other contact details]</strong>.
+</p>
+
+<h2>2. Information this service uses</h2>
+<p>When you use the service, it processes:</p>
+<ul>
+    <li>The NHS number, surname, and date of birth you enter.</li>
+    <li>The NHS number, name, and date of birth returned by the patient lookup service.</li>
+    <li>Your answers to three questions about drinking, smoking, and exercise.</li>
+    <li>Information calculated from those details and answers, including your verified age, score, and low or high result category.</li>
+    <li>A session identifier stored in a necessary browser cookie, and temporary session values used to keep your place in the service.</li>
+</ul>
+<p>
+    The application uses these details to check the patient record, check the minimum age requirement,
+    calculate a result, and move you through the pages. It does not ask for your address, phone number,
+    email address, or appointment information.
+</p>
+
+<h2>3. Patient record lookup</h2>
+<p>
+    The service sends the NHS number you enter to the patient lookup API at
+    <code>https://al-tech-test-apim.azure-api.net/tech-test/t2/patients/{nhsNumber}</code>.
+    The API returns a patient record containing an NHS number, name, and date of birth. The application
+    compares those returned details with the surname and date of birth you entered. It does not send
+    your entered surname or date of birth to this API.
+</p>
+<p>
+    The API is operated by <strong>[Organisation]</strong>
+</p>
+
+<h2>4. Lifestyle answers and result</h2>
+<p>
+    The service uses your age and answers to the questions about drinking, smoking, and exercise to
+    calculate a score and show a low or high result. A score of 3 or less produces the low result; a
+    score of 4 or more produces the high result. This result is generated automatically by the application.
+</p>
+<p>
+    The application code processes your submitted answers to calculate the score, but does not save the
+    answers in its session, a database, or a file. It temporarily stores the result category in the session
+    so it can display the result page.
+</p>
+
+<h2>5. Legal basis</h2>
+<p>
+    <strong>[Legal basis]
+    </strong>
+</p>
+
+<h2>6. Who receives the information</h2>
+<p>
+    The NHS number is sent to the patient lookup API described above. The service is also hosted by
+    <strong>[Host]</strong>.
+</p>
+
+<h2>7. How long information is kept</h2>
+<p>
+    The application keeps temporary session information in server memory. This includes the pass flag
+    and verified age while you answer the questions, followed by the result category while the result page
+    is available. The application clears the flow values as you start again or complete the questionnaire.
+    Session information is also subject to the configured session expiry and may be lost when the
+    application restarts. The application code does not save patient details or answers to a database or
+    file.
+</p>
+
+<h2>8. Cookies</h2>
+<p>
+    The service uses an ASP.NET Core session cookie to maintain your session. Its forms also use
+    anti-forgery protection. These cookies support the service and its security.
+</p>
+
+<h2>9. Your rights and how to contact us</h2>
+<p>
+    Depending on the lawful basis and circumstances, you may have rights to request access to, correction
+    of, deletion of, or limits on the use of your personal information, and to object to some uses. To ask
+    a question or make a request, contact <strong>[privacy contact details]</strong>.
+</p>
+<p>
+    You can also complain to the UK Information Commissioner's Office (ICO) at
+    <a href="https://ico.org.uk/">ico.org.uk</a>.
+</p>
+
+<h2>10. Changes to this notice</h2>
+<p>
+    We will update this notice if the service or its use of personal information changes. The current
+    version will be available from the service's Privacy page.
+</p>
